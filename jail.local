@@ -1,0 +1,9 @@
+[badbot]
+enabled   = true 
+port      = https
+filter    = badbot
+logpath   = /var/log/nginx/access.log
+maxretry  = 1
+banaction = iptables-multiport
+findtime  = 3
+bantime   = 999999
