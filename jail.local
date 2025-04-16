@@ -1,9 +1,29 @@
-[badbot]
-enabled   = true 
-port      = https
-filter    = badbot
-logpath   = /var/log/nginx/access.log
-maxretry  = 1
+#
+# HTTP servers
+#
+
+[nginx-abuse-protect]
+enabled   = true
+port      = http,https
+logpath   = /var/log/nginx/*.log
 banaction = iptables-multiport
-findtime  = 3
-bantime   = 999999
+maxretry  = 1
+findtime  = 3600
+bantime   = 600
+
+[recidive-nginx]
+enabled   = true
+logpath   = /var/log/fail2ban.log
+banaction = iptables-multiport
+maxretry  = 2
+findtime  = 86400
+bantime   = 3600
+
+[nginx-ddos-protect]
+enabled   = true
+port      = http,https
+logpath   = /var/log/nginx/*.log
+banaction = iptables-multiport
+maxretry  = 1
+findtime  = 3600
+bantime   = 300
